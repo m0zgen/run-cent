@@ -22,7 +22,7 @@ yum erase iwl* -y
 
 RMATE="/usr/local/bin/rmate"
 
-function install_rmate
+install_rmate()
 {
 	echo -en "Install Rmate(y/n)? "
 	read answer
