@@ -21,16 +21,16 @@ yum update -y
 yum install git nano wget net-tools epel-release -y
 
 
-read -p "Install Rmate? " -n 1 -r
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-    wget -O- https://raw.githubusercontent.com/m0zgen/install-rmate/master/install-rmate.sh | bash
-fi
+# read -p "Install Rmate? " -n 1 -r
+# if [[ $REPLY =~ ^[Yy]$ ]]
+# then
+#     wget -O- https://raw.githubusercontent.com/m0zgen/install-rmate/master/install-rmate.sh | bash
+# fi
 
-read -p "Secure SSH? " -n 1 -r
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-    wget -O- https://raw.githubusercontent.com/m0zgen/secure-ssh/master/secure-ssh.sh | bash
-fi
+# read -p "Secure SSH? " -n 1 -r
+# if [[ $REPLY =~ ^[Yy]$ ]]
+# then
+#     wget -O- https://raw.githubusercontent.com/m0zgen/secure-ssh/master/secure-ssh.sh | bash
+# fi
 
-exit 0
+# exit 0
