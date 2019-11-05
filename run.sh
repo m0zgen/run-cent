@@ -10,15 +10,14 @@ SCRIPT_PATH=$(cd `dirname "${BASH_SOURCE[0]}"` && pwd)
 
 # Firs steps
 # -------------------------------------------------------------------------------------------\
+# Remove unused software
+yum erase iwl* -y
 
 # Update system
 yum update -y 
 
 # Install software
 yum install git nano wget net-tools epel-release -y
-
-# Remove unused software
-yum erase iwl* -y
 
 RMATE="/usr/local/bin/rmate"
 
