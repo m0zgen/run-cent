@@ -20,6 +20,7 @@ yum update -y
 yum install git nano wget net-tools epel-release -y
 
 RMATE="/usr/local/bin/rmate"
+SSH_SEC=`grep -Po '\bPermitEmptyPasswords\s*\K[^;]*' /etc/ssh/sshd_config`
 
 install_rmate()
 {
@@ -31,18 +32,26 @@ install_rmate()
 	fi
 }
 
+secure_ssh()
+{
+	echo -en "Secure SSH?(y/n)? "
+	read answer
+	if echo "$answer" | grep -iq "^y" ;then
+	  wget -O secure-ssh.sh https://raw.githubusercontent.com/m0zgen/secure-ssh/master/secure-ssh.sh && bash secure-ssh.sh
+	    rm -f secure-ssh.sh
+	fi
+}
+
 if [ -f "$RMATE" ]; then
     echo "$RMATE already installed"
 else
 	install_rmate
 fi
 
-
-echo -en "Secure SSH?(y/n)? "
-read answer
-if echo "$answer" | grep -iq "^y" ;then
-  wget -O secure-ssh.sh https://raw.githubusercontent.com/m0zgen/secure-ssh/master/secure-ssh.sh && bash secure-ssh.sh
-    rm -f secure-ssh.sh
+if [[ "$SSH_SEC" = "no" ]]; then
+	echo "SSH Security already configured!"
+else
+	secure_ssh
 fi
 
 
