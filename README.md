@@ -2,7 +2,7 @@
 
 Very simple:
 ```bash
-wget -O- https://raw.githubusercontent.com/m0zgen/run-cent/master/run.sh | bash
+wget -O run.sh https://raw.githubusercontent.com/m0zgen/run-cent/master/run.sh | bash run.sh
 ```
 
 ## For what reason I exist?
