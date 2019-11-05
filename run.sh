@@ -12,10 +12,18 @@ SCRIPT_PATH=$(cd `dirname "${BASH_SOURCE[0]}"` && pwd)
 # -------------------------------------------------------------------------------------------\
 
 # Remove unused software
-yum erase iwl*
+yum erase iwl* -н
 
 # Update system
 yum update -y 
 
 # Install software
 yum install git nano wget net-tools epel-release -y
+
+
+read -p "Install Rmate? " -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    wget -O- https://raw.githubusercontent.com/m0zgen/install-rmate/master/install-rmate.sh | bash
+fi
