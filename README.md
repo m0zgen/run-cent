@@ -4,6 +4,10 @@ Very simple:
 ```bash
 wget -O run.sh https://raw.githubusercontent.com/m0zgen/run-cent/master/run.sh && bash run.sh
 ```
+or
+```bash
+curl -sfL https://raw.githubusercontent.com/m0zgen/run-cent/master/run.sh | sh
+```
 
 ## For what reason I exist?
 
