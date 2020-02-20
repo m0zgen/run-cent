@@ -20,7 +20,12 @@ yum update -y
 yum install git nano wget net-tools epel-release -y
 
 RMATE="/usr/local/bin/rmate"
-SSH_SEC=`grep -Po '\bPermitEmptyPasswords\s*\K[^;]*' /etc/ssh/sshd_config`
+SSH_SEC=`grep -Po '\bPermitRootLogin\s*\K[^;]*' /etc/ssh/sshd_config | head -1`
+
+
+# Install cats
+wget -O cats.sh https://raw.githubusercontent.com/m0zgen/cats/master/cats.sh && bash cats.sh
+rm -f cats.sh
 
 install_rmate()
 {
@@ -48,10 +53,10 @@ else
 	install_rmate
 fi
 
-if [[ "$SSH_SEC" = "no" ]]; then
-	echo "SSH Security already configured!"
-else
+if [[ "$SSH_SEC" == "yes" ]]; then
 	secure_ssh
+else
+	echo "Secure SSH already configured!"
 fi
 
 
