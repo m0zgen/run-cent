@@ -10,6 +10,12 @@ SCRIPT_PATH=$(cd `dirname "${BASH_SOURCE[0]}"` && pwd)
 
 # Firs steps
 # -------------------------------------------------------------------------------------------\
+
+if ((EUID != 0)); then
+    echo "Root or Sudo  Required for script ( $(basename $0) )"
+    exit 1
+fi
+
 # Remove unused software
 yum erase iwl* -y
 
@@ -17,7 +23,7 @@ yum erase iwl* -y
 yum update -y 
 
 # Install software
-yum install git nano wget net-tools epel-release -y
+yum install git nano wget net-tools bash-completion epel-release -y
 
 RMATE="/usr/local/bin/rmate"
 SSH_SEC=`grep -Po '\bPermitRootLogin\s*\K[^;]*' /etc/ssh/sshd_config | head -1`
@@ -37,6 +43,15 @@ install_rmate()
 	fi
 }
 
+install_fish()
+{
+	echo -en "Install Fish shell(y/n)? "
+	read answer
+	if echo "$answer" | grep -iq "^y" ;then
+		yum install fish -y
+	fi
+}
+
 secure_ssh()
 {
 	echo -en "Secure SSH?(y/n)? "
@@ -46,6 +61,14 @@ secure_ssh()
 	    rm -f secure-ssh.sh
 	fi
 }
+
+if [ $(which postfix) ]; then
+	echo -en "Remove postfix?(y/n)? "
+	read answer
+	if echo "$answer" | grep -iq "^y" ;then
+	  yum remove postfix -y
+	fi
+fi
 
 if [ -f "$RMATE" ]; then
     echo "$RMATE already installed"
