@@ -62,13 +62,13 @@ secure_ssh()
 	fi
 }
 
-if [ $(which postfix) ]; then
-	echo -en "Remove postfix?(y/n)? "
-	read answer
-	if echo "$answer" | grep -iq "^y" ;then
-	  yum remove postfix -y
-	fi
-fi
+# if [ $(which postfix) ]; then
+# 	echo -en "Remove postfix?(y/n)? "
+# 	read answer
+# 	if echo "$answer" | grep -iq "^y" ;then
+# 	  yum remove postfix -y
+# 	fi
+# fi
 
 if [ -f "$RMATE" ]; then
     echo "$RMATE already installed"
